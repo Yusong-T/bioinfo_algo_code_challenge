@@ -1,0 +1,21 @@
+pattern = 'ACTGA'
+genome = 'GCAAGTTGTCACAAGTTGCCGCGGCAAGAAGAAACCGTCTGAGTGTCGATGGAACGCGGGAAACCAAATCCGGTGGTCGTTAATGTCCCCACCACGAAGCACTAGCCCCTCTAAGACTGATGATTCACGTGAAATGAGTAGACTGAGCTTAGCGCGGCAGGCTTCCGATCCTGCCCTCGGTTTCGGGCCGCCCGAGATTATCGTGTGGCGTTGGCCCATTGACCTAGTGAACTAGTGATGTCGGTACTCGAAACTGAAATTCGAGGGCCAGCAAGCAGTTGTTGATTAACTGAAATCGCTCGCTAGCTGGTGCGACGGATGGGATTTTTAGATCGGGTAGACAGGGTTTGGTGGTCATATTGGCGGCGTTGGGCTGACACAGGGTCGA'
+d = 3
+
+k = len(pattern)
+positions = []
+for i in range(len(genome)-k+1):
+	if genome[i:i+k] == pattern:
+		positions.append(i)
+	else:
+		count = []
+		for t in range(len(pattern)):
+			if genome[i+t] == pattern[t]:		# needs to add "i" !!!
+				continue
+			else:
+				count.append(t)
+		if len(count) <= d:
+			positions.append(i)
+
+print(*positions)
+print(len(positions))
